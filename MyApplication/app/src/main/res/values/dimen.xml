@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="titleSize">20sp</dimen>
+    <dimen name="textSize">18sp</dimen>
+    <dimen name="vertical_margin">20dp</dimen>
+    <dimen name="horizon_margin10">10dp</dimen>
+    <dimen name="horizon_margin5">5dp</dimen>
+    <dimen name="pad">5dp</dimen>
+    <dimen name="circleSize">80dp</dimen>
+</resources>
