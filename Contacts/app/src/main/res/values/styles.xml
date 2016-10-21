@@ -1,0 +1,30 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    
+    <style name="itemStyle">
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginBottom">@dimen/wideBar</item>
+        <item name="android:layout_marginTop">@dimen/wideBar</item>
+    </style>
+    <style name="detailTextStyle">
+        <item name="android:layout_marginTop">@dimen/paded</item>
+        <item name="android:layout_marginBottom">@dimen/paded</item>
+        <item name="android:layout_marginLeft">@dimen/paded</item>
+        <item name="android:textSize">@dimen/nameTextSize</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="detailTextStyle2">
+        <item name="android:paddingLeft">@dimen/paded</item>
+        <item name="android:paddingBottom">@dimen/paded</item>
+        <item name="android:paddingTop">@dimen/paded</item>
+        <item name="android:textSize">@dimen/nameTextSize</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

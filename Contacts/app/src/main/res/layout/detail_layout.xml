@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/relator"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_weight="1">
+
+        <ImageButton
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:padding="@dimen/paded"
+            android:src="@mipmap/back" />
+
+        <TextView
+            android:id="@+id/detaiName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBaseline="@+id/starred"
+            android:layout_alignLeft="@+id/back"
+            android:textColor="@color/white"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:padding="@dimen/paded"
+            android:textSize="@dimen/titleTextSize" />
+
+        <ImageButton
+            android:id="@+id/starred"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:padding="@dimen/paded"
+            android:src="@mipmap/empty_star" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/zero"
+        android:layout_weight="2"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/detailPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/halfPaded"
+                android:layout_marginLeft="@dimen/paded"
+                android:layout_marginTop="@dimen/paded"
+                android:textColor="@color/phone" />
+
+            <TextView
+                android:id="@+id/detailTH"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignLeft="@+id/detailPhone"
+                android:layout_below="@+id/detailPhone"
+                android:layout_marginBottom="@dimen/paded"
+                android:textColor="@color/TH" />
+
+            <ImageView
+                android:id="@+id/shortbar"
+                android:layout_width="@dimen/barwidth"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/chat"
+                android:layout_alignTop="@+id/chat"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/chat"
+                android:background="@color/barColor" />
+
+            <ImageView
+                android:id="@+id/chat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/detailTH"
+                android:layout_alignParentRight="true"
+                android:layout_marginLeft="@dimen/bigPaded"
+                android:layout_marginRight="@dimen/paded"
+                android:src="@mipmap/chat" />
+
+            <ImageView
+                android:id="@+id/bar"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/barwidth"
+                android:layout_alignLeft="@+id/detailTH"
+                android:layout_below="@+id/detailTH"
+                android:background="@color/barColor" />
+
+            <TextView
+                android:id="@+id/getMore"
+                style="@style/detailTextStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bar"
+                android:text="更多资料" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/wideBar"
+                android:layout_below="@+id/getMore"
+                android:background="@color/barColor" />
+        </RelativeLayout>
+
+        <ListView
+            android:id="@+id/operation_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></ListView>
+
+    </LinearLayout>
+
+</LinearLayout>
