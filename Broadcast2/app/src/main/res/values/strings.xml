@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Broadcast</string>
+    <string name="staticReg">静态注册</string>
+    <string name="dynamicReg">动态注册</string>
+    <string name="broatCastInfo">请输入广播信息</string>
+    <string name="appwidget_text">lab5</string>
+    <string name="add_widget">Add widget</string>
+</resources>

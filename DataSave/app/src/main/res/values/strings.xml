@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DataSave</string>
+    <string name="newPassword">New Password</string>
+    <string name="okButton">ok</string>
+    <string name="clear">clear</string>
+    <string name="save">save</string>
+    <string name="load">load</string>
+
+</resources>

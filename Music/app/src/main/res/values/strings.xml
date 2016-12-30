@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Music</string>
+    <string name="originalValue"></string>
+    <string name="paly">播放</string>
+    <string name="stop">停止</string>
+    <string name="quit">退出</string>
+</resources>
