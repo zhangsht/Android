@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Integration</string>
+    <string name="StartActivityForResult">StartActivityForResult</string>
+    <string name="generateQRCode">生成二维码</string>
+    <string name="fg_Home">Home</string>
+    <string name="fg_Setting">Setting</string>
+    <string name="fg_More">More</string>
+    <string name="jumpForResult">从其他界面获取信息</string>
+    <string name="timeRuler">查看时间刻度尺</string>
 </resources>

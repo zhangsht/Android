@@ -1,9 +1,9 @@
 package com.example.zhang.activityJump;
 
 import android.content.Intent;
-import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,9 +26,20 @@ public class PageJump extends AppCompatActivity {
                 String msg = editText.getText().toString();
                 intent.putExtra("msg", msg);
 
-                setResult(RESULT_OK, intent);
+                setResult(RESULT_CANCELED, intent);
                 finish();
             }
         });
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        Intent intent = new Intent();
+        String msg = "null";
+        intent.putExtra("msg", msg);
+
+        setResult(RESULT_CANCELED, intent);
+        finish();
+        return true;
     }
 }
