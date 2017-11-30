@@ -1,24 +1,58 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        autoSign {
+            keyAlias 'zhangsht'
+            keyPassword 'zhangsht'
+            storeFile file('C:/Users/zhang/integrationKey2.jks')
+            storePassword 'zhangsht'
+        }
+    }
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.example.zhang.integration"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 23
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            pseudoLocalesEnabled true
+            minifyEnabled true
             buildConfigField "boolean", "LOG_DEBUG", "false"
             zipAlignEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.autoSign
         }
     }
     buildToolsVersion '26.0.2'
+    flavorDimensions "release"
+    productFlavors {
+        wandoujia {
+            dimension "release"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wandoujia"]
+        }
+        baidu {
+            dimension "release"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "baidu"]
+        }
+        xiaomi {
+            dimension "release"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "xiaomi"]
+        }
+        tencent {
+            dimension "release"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "tencent"]
+        }
+        taobao {
+            dimension "release"
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "taobao"]
+        }
+    }
 }
 
 dependencies {

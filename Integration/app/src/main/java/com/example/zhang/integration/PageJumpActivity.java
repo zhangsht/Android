@@ -1,4 +1,4 @@
-package com.example.zhang.activityJump;
+package com.example.zhang.integration;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,9 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.zhang.integration.R;
-
-public class PageJump extends AppCompatActivity {
+public class PageJumpActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

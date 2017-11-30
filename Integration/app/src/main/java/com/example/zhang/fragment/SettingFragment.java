@@ -10,7 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-import com.example.zhang.activityJump.PageJump;
+import com.example.zhang.integration.PageJumpActivity;
 import com.example.zhang.integration.QRCodeActivity;
 import com.example.zhang.integration.R;
 import com.example.zhang.integration.TimeRulerActivity;
@@ -55,7 +55,7 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.btn_jump_for_result:
-                intent.setClass(getActivity(), PageJump.class);
+                intent.setClass(getActivity(), PageJumpActivity.class);
                 startActivityForResult(intent, Activity.RESULT_FIRST_USER);
                 break;
             default:
