@@ -4,20 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="4dp">
-
-    <Button
-        android:id="@+id/btn_time_ruler"
-        style="@style/setting_btn"
-        android:text="@string/timeRuler" />
-
-    <Button
-        android:id="@+id/btn_jump_for_result"
-        style="@style/setting_btn"
-        android:text="@string/jumpForResult" />
-
-    <Button
-        android:id="@+id/btn_generate_qr_code"
-        style="@style/setting_btn"
-        android:text="@string/generateQRCode" />
+    <ListView
+        android:id="@+id/lv_setting_btns"
+        android:layout_marginTop="8dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"></ListView>
 
 </LinearLayout>

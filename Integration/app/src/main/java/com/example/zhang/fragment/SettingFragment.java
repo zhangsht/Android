@@ -8,12 +8,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
+import com.example.zhang.adpter.SettingButtonAdapter;
 import com.example.zhang.integration.PageJumpActivity;
 import com.example.zhang.integration.QRCodeActivity;
 import com.example.zhang.integration.R;
 import com.example.zhang.integration.TimeRulerActivity;
+
+import java.util.ArrayList;
 
 import static android.app.Activity.RESULT_CANCELED;
 
@@ -21,9 +25,11 @@ import static android.app.Activity.RESULT_CANCELED;
  * Created by zhang on 2017/11/29.
  */
 
-public class SettingFragment extends Fragment implements View.OnClickListener {
+public class SettingFragment extends Fragment {
     private static final String TAG = "SettingFragment";
-    private Button mbtnTimeRuller, mbtnGenerateQRCode, mbtnJumpForResult;
+    private ListView mlvSettingButtons;
+    private SettingButtonAdapter mSettingButtonAdapter;
+    private ArrayList<Integer> mSettingButtonData;
 
     public static SettingFragment newInstance() {
         SettingFragment _instance = new SettingFragment();
@@ -33,34 +39,45 @@ public class SettingFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
-        mbtnTimeRuller = view.findViewById(R.id.btn_time_ruler);
-        mbtnTimeRuller.setOnClickListener(this);
-        mbtnGenerateQRCode = view.findViewById(R.id.btn_generate_qr_code);
-        mbtnGenerateQRCode.setOnClickListener(this);
-        mbtnJumpForResult = view.findViewById(R.id.btn_jump_for_result);
-        mbtnJumpForResult.setOnClickListener(this);
+        return bindView(view);
+    }
+
+    private View bindView(View view) {
+        mlvSettingButtons = view.findViewById(R.id.lv_setting_btns);
+        putDataIntoListView();
+        mSettingButtonAdapter = new SettingButtonAdapter(getContext(), mSettingButtonData);
+        mlvSettingButtons.setAdapter(mSettingButtonAdapter);
+        mlvSettingButtons.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Intent intent = new Intent();
+                switch (i) {
+                    case 0:
+                        intent.setClass(getActivity(), TimeRulerActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 1:
+                        intent.setClass(getActivity(), QRCodeActivity.class);
+                        startActivity(intent);
+                        break;
+                    case 2:
+                        intent.setClass(getActivity(), PageJumpActivity.class);
+                        startActivityForResult(intent, Activity.RESULT_FIRST_USER);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        });
+
         return view;
     }
 
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent();
-        switch (v.getId()) {
-            case R.id.btn_time_ruler:
-                intent.setClass(getActivity(), TimeRulerActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.btn_generate_qr_code:
-                intent.setClass(getActivity(), QRCodeActivity.class);
-                startActivity(intent);
-                break;
-            case R.id.btn_jump_for_result:
-                intent.setClass(getActivity(), PageJumpActivity.class);
-                startActivityForResult(intent, Activity.RESULT_FIRST_USER);
-                break;
-            default:
-                break;
-        }
+    private void putDataIntoListView() {
+        mSettingButtonData = new ArrayList<>();
+        mSettingButtonData.add(R.string.timeRuler);
+        mSettingButtonData.add(R.string.generateQRCode);
+        mSettingButtonData.add(R.string.jumpForResult);
     }
 
     @Override
