@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.zhang.integration.R;
@@ -45,11 +44,13 @@ public class SettingButtonAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ButtonHolder buttonHolder = null;
         if (convertView == null) {
+            // init
             convertView = mLayoutInflater.inflate(R.layout.list_items_setting_button, null);
             buttonHolder = new ButtonHolder(convertView);
             buttonHolder.button.setText(mContext.getResources().getString(mData.get(position)));
             convertView.setTag(buttonHolder);
         } else {
+            // scroll
             buttonHolder = (ButtonHolder)convertView.getTag();
             buttonHolder.button.setText(mContext.getResources().getString(mData.get(position)));
         }

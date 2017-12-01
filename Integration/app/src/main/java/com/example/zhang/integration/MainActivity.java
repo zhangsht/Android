@@ -2,6 +2,7 @@ package com.example.zhang.integration;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
@@ -14,6 +15,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private BottomNavigationBar bottomNavigationBar;
     private HomeFragment mHomeFragment;
     private SettingFragment mSettingFragment;
+    private int mFragmentPosition = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,8 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
 
         bindView();
-
-        setDefaultFragment();
+        onTabSelected(mFragmentPosition);
     }
 
     private void bindView() {
@@ -34,15 +35,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setFirstSelectedPosition(0)
                 .initialise();
 
-        mHomeFragment = HomeFragment.newInstance(getString(R.string.fg_Home));
-        mSettingFragment = SettingFragment.newInstance();
-
         bottomNavigationBar.setTabSelectedListener(this);
-    }
-
-    private void setDefaultFragment() {
-        android.support.v4.app.FragmentTransaction fgTransaction = getSupportFragmentManager().beginTransaction();
-        fgTransaction.replace(R.id.fg_container, mHomeFragment).commit();
     }
 
     @Override
@@ -50,6 +43,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        mFragmentPosition = savedInstanceState.getInt("fragmentPosition");
+        onTabSelected(mFragmentPosition);
+        super.onRestoreInstanceState(savedInstanceState);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        outState.putInt("fragmentPosition", mFragmentPosition);
+    }
 
     @Override
     public void onClick(View v) {
@@ -57,14 +61,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onTabSelected(int position) {
-        android.support.v4.app.FragmentTransaction fragmentTransaction = getSupportFragmentManager()
-                .beginTransaction();
+        mFragmentPosition = position;
+        android.support.v4.app.FragmentTransaction fragmentTransaction =
+                getSupportFragmentManager().beginTransaction();
+        for (android.support.v4.app.Fragment fragment : getSupportFragmentManager().getFragments()) {
+            fragmentTransaction.hide(fragment);
+        }
         switch (position) {
             case 0:
-                fragmentTransaction.replace(R.id.fg_container, mHomeFragment);
+                setTitle(R.string.fg_Home);
+
+                if (mHomeFragment == null) {
+                    mHomeFragment = HomeFragment.newInstance(getString(R.string.fg_Home));
+                    fragmentTransaction.add(R.id.fg_container, mHomeFragment);
+                } else {
+                    fragmentTransaction.show(mHomeFragment);
+                }
                 break;
             case 1:
-                fragmentTransaction.replace(R.id.fg_container, mSettingFragment);
+                setTitle(R.string.fg_Setting);
+
+                if (mSettingFragment == null) {
+                    mSettingFragment = SettingFragment.newInstance();
+                    fragmentTransaction.add(R.id.fg_container, mSettingFragment);
+                } else {
+                    fragmentTransaction.show(mSettingFragment);
+                }
                 break;
             case 2:
                 break;
@@ -73,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         fragmentTransaction.commit();
     }
-
 
     @Override
     public void onTabUnselected(int position) {
